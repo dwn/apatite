@@ -8,9 +8,7 @@
 
     git clone https://github.com/dwn/apatite.git
 
-    mkdir -p cfg/apatite/
-
-    cd cfg/apatite
+    mkdir -p cfg/apatite/ && cd $
 
     nano config.py
 
