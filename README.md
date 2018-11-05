@@ -14,7 +14,7 @@
 
     nano config.py
 
-### Add and save the following to the file, filling in your information for 'XXXXXX'
+#### Add and save the following to the file, filling in your information for 'XXXXXX'
 
     # -*- coding: utf-8 -*-
     from os import environ
