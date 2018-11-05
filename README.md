@@ -4,6 +4,10 @@
 |[dwn.herokuapp.com](http://dwn.herokuapp.com)|
 |![](logo.gif)|
 
+Flask project in `webpage/`
+
+PodSixNet project in `main/`
+
 ## Linux
 
     git clone https://github.com/dwn/apatite.git
