@@ -7,7 +7,6 @@
 ## Linux
 
     git clone https://github.com/dwn/apatite.git
-
     nano ~/.apatite
 
 #### Add and save the following to the file, filling in your information for 'XXXXXX'
