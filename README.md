@@ -8,9 +8,7 @@
 
     git clone https://github.com/dwn/apatite.git
 
-    mkdir -p cfg/apatite/; cd $_
-
-    nano config.py
+    nano .apatite
 
 #### Add and save the following to the file, filling in your information for 'XXXXXX'
 
@@ -46,6 +44,6 @@
     MAIL_SUPPRESS_SEND = False
     MAIL_ASCII_ATTACHMENTS = False
     MAIL_DEFAULT_SENDER = 'no.reply@' + APP_NAME + '.com'
-    ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+    ALLOWED_IMAGE_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
     STATIC_FOLDER = 'static/'
     UPLOAD_FOLDER = STATIC_FOLDER
