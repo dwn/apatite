@@ -1,14 +1,42 @@
-version="$(date)"
-printf "#define APP_VERSION \"${version} \"" > app/appy/Version.h
-printf ' * Version %s\n' "${version}"
-#sudo -H pip install -r requirements.txt
+if [[ $_ == $0 ]]
+then
+  echo "This script should only be run sourced: . serve"
+  exit
+fi
+
+if [ "$VIRTUAL_ENV" == "" ]; then
+  rm -rf .env
+  virtualenv .env
+  deactivate 2> /dev/null
+  source .env/bin/activate
+  pip install -r requirements.txt
+  
+  heroku plugins:install heroku-repo
+  var=$(grep "git.heroku.com" .git/config)
+  var=$(echo $var|cut -d'/' -f 4|cut -d'.' -f 1)
+  heroku repo:purge_cache -a $var
+  heroku config:set HEROKU=True
+fi
+
+printf 'web: gunicorn app:app' > Procfile
+printf " * Procfile created\n"
+
+python --version > runtime.txt 2>&1
+str=$(cat runtime.txt | tr '[:upper:]' '[:lower:]')
+str=${str// /-}
+echo $str > runtime.txt 2>&1
+printf " * Runtime file created\n"
+
 printf " * Moving app bin files\n"
 rm -f static/app.js static/app.html.mem static/app.html
 rm -f app/bin/*.html
 mv app/bin/app.js static/ 2> /dev/null
 mv app/bin/app.html.mem static/ 2> /dev/null
+
 python app.py
+
 printf ' Deleting .pyc files\n'
 find . -name '*.pyc' -type f -delete
+
 printf '\e[1;31m%-6s\e[m\n' 'CHECK BEFORE DEPLOY:'
 grep -Ir DISABLE_CACHE config.py
