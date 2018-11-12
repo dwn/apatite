@@ -4,12 +4,6 @@
 |[dwn.herokuapp.com](http://dwn.herokuapp.com)|
 |![](logo.gif)|
 
-## Linux
-
-    git clone https://github.com/dwn/apatite.git
-
-    nano .apatite
-
 #### Add and save the following to the file, filling in your information for 'XXXXXX'
 
     # -*- coding: utf-8 -*-
