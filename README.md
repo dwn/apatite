@@ -3,3 +3,5 @@
 |:---:|
 |[dwn.herokuapp.com](http://dwn.herokuapp.com)|
 |![](logo.gif)|
+
+    . serve
