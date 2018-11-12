@@ -4,18 +4,66 @@ then
   exit
 fi
 
+if [ ! -f /tmp/foo.txt ]; then
+    echo "Config file not found - creating one..."
+    mkdir -p $HOME/.config/apatite
+    echo "
+# -*- coding: utf-8 -*-
+from os import environ
+DISABLE_CACHE = False
+APP_NAME = 'apatite'
+ADMIN_EMAIL = 'danwnielsen@gmail.com'
+SECRET_KEY = 'XXXXXXXXXXXXXXXXX'
+if 'HEROKU' in environ:
+  DEBUG = False
+  DB = 'x5yywqbt03nydid5'
+  DB_USERNAME = 'h18i4d5r094sqgqw'
+  DB_PASSWORD = 'XXXXXXXXXXXXXXX'
+  DB_HOST = 'vlvlnl1grfzh34vj.chr7pe7iynqr.eu-west-1.rds.amazonaws.com'
+  MAIL_SERVER = 'smtp.sendgrid.net'
+  MAIL_USERNAME = 'app95484188@heroku.com'
+  MAIL_PASSWORD = 'XXXXXXXXXXXXXX'
+else:
+  DEBUG = True
+  DB = 'poiesys'
+  DB_USERNAME = 'admin'
+  DB_PASSWORD = 'XXXXXXXXXXXXXXXX'
+  DB_HOST = 'localhost'
+  MAIL_SERVER = 'smtp.gmail.com'
+  MAIL_USERNAME = 'danwnielsen@gmail.com'
+  MAIL_PASSWORD = 'XXXXXXXXXXXXXXXX'
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_DEBUG = False
+MAIL_MAX_EMAILS = None
+MAIL_SUPPRESS_SEND = False
+MAIL_ASCII_ATTACHMENTS = False
+MAIL_DEFAULT_SENDER = 'no.reply@' + APP_NAME + '.com'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+STATIC_FOLDER = 'static/'
+UPLOAD_FOLDER = STATIC_FOLDER
+
+" > $HOME/.config/apatite/config.py
+fi
+
 if [ "$VIRTUAL_ENV" == "" ]; then
   rm -rf .env
   virtualenv .env
   deactivate 2> /dev/null
   source .env/bin/activate
   pip install -r requirements.txt
+
+##########################
   
   heroku plugins:install heroku-repo
   var=$(grep "git.heroku.com" .git/config)
   var=$(echo $var|cut -d'/' -f 4|cut -d'.' -f 1)
   heroku repo:purge_cache -a $var
   heroku config:set HEROKU=True
+
+##########################
+
 fi
 
 printf 'web: gunicorn app:app' > Procfile

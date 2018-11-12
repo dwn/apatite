@@ -22,7 +22,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 app = Flask(__name__)
-app.config.from_pyfile('../../../config_web-truss')
+app.config.from_pyfile('config.py')
 mail = Mail(app)
 google_login = GoogleLogin(app)
 if not app.config['DEBUG']:
