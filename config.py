@@ -1,1 +1,1 @@
-../.config-apatite.py
+/home/dwn/.config/apatite/config.py

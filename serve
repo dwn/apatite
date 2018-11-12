@@ -4,9 +4,11 @@ then
   exit
 fi
 
-if [ ! -f /tmp/foo.txt ]; then
-    echo "Config file not found - creating one..."
-    mkdir -p $HOME/.config/apatite
+CFG_DIR=$HOME/.config/apatite
+CFG_FILE=$CFG_DIR/config.py
+if [ ! -f "$CFG_DIR" ]; then
+    echo " * Creating config file $CFG_FILE"
+    mkdir -p "$CFG_DIR"
     echo "
 # -*- coding: utf-8 -*-
 from os import environ
@@ -44,8 +46,15 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 STATIC_FOLDER = 'static/'
 UPLOAD_FOLDER = STATIC_FOLDER
 
-" > $HOME/.config/apatite/config.py
+" > "$CFG_FILE"
 fi
+
+echo " * Ensuring config file secure"
+chmod 700 "$CFG_FILE"
+
+echo " * Creating link to config file"
+rm config.py
+ln -s "$CFG_FILE" config.py
 
 if [ "$VIRTUAL_ENV" == "" ]; then
   rm -rf .env
@@ -61,9 +70,6 @@ if [ "$VIRTUAL_ENV" == "" ]; then
   var=$(echo $var|cut -d'/' -f 4|cut -d'.' -f 1)
   heroku repo:purge_cache -a $var
   heroku config:set HEROKU=True
-
-##########################
-
 fi
 
 printf 'web: gunicorn app:app' > Procfile
@@ -83,8 +89,12 @@ mv app/bin/app.html.mem static/ 2> /dev/null
 
 python app.py
 
-printf ' Deleting .pyc files\n'
+echo
+printf ' * Deleting .pyc files\n'
 find . -name '*.pyc' -type f -delete
 
-printf '\e[1;31m%-6s\e[m\n' 'CHECK BEFORE DEPLOY:'
-grep -Ir DISABLE_CACHE config.py
+OUTPUT=$(grep -Ir DISABLE_CACHE "$CFG_FILE")
+printf '\e[1;31m%-6s\e[m\n' "CHECK BEFORE DEPLOY: $OUTPUT"
+
+printf 'To leave sandbox: '
+printf '\e[1;29m%-6s\e[m\n' 'deactivate'
