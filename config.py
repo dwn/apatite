@@ -1,1 +1,0 @@
-/home/dwn/.config/apatite/config.py
