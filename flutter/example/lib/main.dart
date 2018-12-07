@@ -71,7 +71,7 @@ GestureDetector buildButtonColumn(IconData icon, FlutterWebviewPlugin flutterWeb
       flutterWebviewPlugin.launch(nextUrl,//clearCache: true,
           rect: new Rect.fromLTWH(
               0.0, 0.0,
-              size.width, size.height - 50),
+              size.width, size.height - 45),
           userAgent: kAndroidUserAgent);
     },
   );
@@ -262,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
         flutterWebviewPlugin.launch(nextUrl,//clearCache: true,
             rect: new Rect.fromLTWH(
                 0.0, 0.0,
-                size.width, size.height - 50),
+                size.width, size.height - 45),
             userAgent: kAndroidUserAgent);
       },
     );
@@ -270,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
     flutterWebviewPlugin.launch(selectedUrl,//clearCache: true,
     rect: new Rect.fromLTWH(
     0.0, 0.0,
-    size.width, size.height - 50),
+    size.width, size.height - 45),
     userAgent: kAndroidUserAgent);
 
     return new Scaffold(

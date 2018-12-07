@@ -1,0 +1,9 @@
+QMAKE="/home/dwn/prg/Qt-3.0.4/5.11.1/gcc_64/bin/qmake"
+FILENAME="photoviewer"
+CONFIG=release
+PORT=3001
+
+"$QMAKE" "${FILENAME}.pro" -spec linux-g++ CONFIG+=${CONFIG} CONFIG+=qml_${CONFIG}
+make clean
+make
+./${FILENAME} -platform webgl:port=${PORT}

@@ -1,0 +1,2 @@
+. ${HOME}/.config/apatite/config.sh
+rsync -ruv -e "ssh -i \"${HOME}/.ssh/${KEY_FILE}\"" * ${USER}@${APATITE_IP}:/home/${USER}/apatite/$(basename $(pwd))

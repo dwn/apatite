@@ -72,7 +72,7 @@ Item {
         opacity: 0.25
     }
 
-    Text { id: labelText; font.pixelSize: 15; anchors.centerIn: parent }
+    Text { id: labelText; color: 'white'; font.pixelSize: 15; anchors.centerIn: parent }
 
     MouseArea {
         anchors { fill: parent; leftMargin: -20; topMargin: -20; rightMargin: -20; bottomMargin: -20 }

@@ -1,5 +1,5 @@
 # apatite
-|Back-end code for serving multiuser apps and AI using Flask-PodSixNet-Python, server-side QML that streams WebGL calls to the client, and Flutter-Dart code for placing a simple mobile-device frame around the web app|
+|QML streams WebGL calls to the client browser, integrating with C-C++ libuv multiuser code, while Flutter-Dart places a simple mobile-device frame around this web app|
 |:---:|
 |[dwn.herokuapp.com](http://dwn.herokuapp.com)|
 |![](logo.gif)|

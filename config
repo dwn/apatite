@@ -1,0 +1,21 @@
+FILEOUT=${HOME}/.config/apatite/config.sh
+
+confirm() {
+  read -p "$1 [y/N] " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]
+  then
+    [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1
+  fi
+}
+
+append_var() {
+  printf "$1: " ; read TMP
+  printf "$1=\"${TMP}\"\n" >> ${FILEOUT}
+}
+
+confirm "Are you sure you want to overwrite the old config file?"
+printf "" > ${FILEOUT}
+append_var USER
+append_var KEY_FILE
+append_var SERVER_ADDRESS

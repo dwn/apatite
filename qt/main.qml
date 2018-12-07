@@ -75,9 +75,11 @@ ApplicationWindow {
 
     ListModel {
         id: photosModel
-        ListElement { tag: "Flowers" }
-        ListElement { tag: "Wildlife" }
-        ListElement { tag: "Prague" }
+        ListElement { tag: "Create" }
+        ListElement { tag: "Game" }
+        ListElement { tag: "Media" }
+        ListElement { tag: "Social" }
+        ListElement { tag: "Utility" }
     }
 
     DelegateModel { id: albumVisualModel; model: photosModel; delegate: AlbumDelegate {} }
@@ -137,3 +139,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom; opacity: mainWindow.imageLoading; visible: opacity != 0.0
     }
 }
+
+/*##^## Designer {
+    D{i:0;autoSize:true;height:480;width:640}
+}
+ ##^##*/
